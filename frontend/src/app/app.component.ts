@@ -12,12 +12,14 @@ export class AppComponent implements OnInit {
   allDataUrl = 'http://localhost:3000/hits';
   myDataArray: any[] = [];
   displayedColumns: string[] = ['_id', 'created_at', 'author', 'action'];
+  // x: any = '';
   constructor(private http: HttpClient) { }
   ngOnInit() {
     this.getAllData();
     console.log(this.myDataArray)
   }
   getAllData() {
+    console.log("in getAllData()")
   return this.http.get<any[]>(this.allDataUrl)
            .subscribe(
              data => {
@@ -30,8 +32,9 @@ export class AppComponent implements OnInit {
     console.log(this.localhost+"hits/"+_id);
 
     this.http.put<any[]>(this.localhost+"hits/"+_id,{"is_delete" : "true"})
-            .subscribe(data => {console.log("PUT ", data);}, error => {console.log("Error", error);});
+            .subscribe(data => {this.getAllData();console.log("PUT "+data);}, error => {console.error(error);});
 
-    return this.getAllData();
+  return setTimeout(() => {this.getAllData()},100);
   }
+
 }

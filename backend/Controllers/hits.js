@@ -41,15 +41,17 @@ exports.updateHit = function(req,res,next) {
 
   console.log("params: "+JSON.stringify(req.params,null,4));
   //console.log("query: "+JSON.stringify(req.query,null,4));
+  // Hits.findByIdAndUpdate(req.params.hitsId, {$set: {"is_delete" : "true"}}, {useFindAndModify: false},
   Hits.findByIdAndUpdate(req.params.hitsId, {$set: {"is_delete" : "true"}}, {useFindAndModify: false},
     function (err, hits) {
       if (err) return next(err);
       //res.send('Hit deleted.');
     });
 
-  var condition = {"is_delete" : "false"}
-  Hits.find(condition, function (err, doc) {
-    res.send(doc);
-  });
+  // var condition = {"is_delete" : "false"}
+  // Hits.find(condition, function (err, doc) {
+  //   console.log("doc: "+doc);
+  //   res.hits.send(doc);
+  // });
 
 }

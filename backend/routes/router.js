@@ -24,7 +24,7 @@ router.get('/getfromapi', function (req, res, next) {
 
 router.get('/hits', hits.listHits);
 
-router.delete('/hits/:hitId', hits.deleteHit);
+//router.delete('/hits/:hitId', hits.deleteHit);
 
 router.put('/hits/:hitsId', hits.updateHit);
 
