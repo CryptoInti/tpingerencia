@@ -3,20 +3,29 @@ var Hits = require('../models/hits');
 
 exports.insertHits = function(req, res, next) {
   var hitsData = req;
-var limit = 5;
-var i = 0;
+// var limit = 2;
+// var i = 0;
   for (let item of hitsData.hits) {
     //console.log(item);
-    item["is_delete"] = false;
-    Hits.create(item, function (error, hits) {
-      if (error) {
-        return next(error);
-      } else {
-        //res.send(hits);
+    //Se busca si existe el registro previamente.
+    Hits.find({created_at_i:item.created_at_i}, function(err, doc) {
+      console.log("---X"+doc.length);
+      if(doc.length == 0){
+        console.log("---in---");
+        //Volvermos a guardar el registro solo si no existe el created_at_i previamente
+        item["is_delete"] = false;
+        Hits.create(item, function (error, hits) {
+          if (error) {
+            return next(error);
+          } else {
+            console.log("OK--save-->"+hits.created_at_i)
+            //res.send(hits);
+          }
+        });
       }
-    });
-    i++
-    if(i == limit) break;
+    })
+    // i++
+    // if(i == limit) break;
   }
 
 }
