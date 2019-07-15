@@ -4,13 +4,17 @@ Pasos para iniciar backend y frontend.
 
 $ git clone https://github.com/CryptoInti/tpingerencia
 
-Iniciar Backend
+## Iniciar Backend
+```plain
 $ cd tpingerencia/backend
 $ npm install
 $ node app.js
+```
 
-Iniciar Frontend
+## Iniciar Frontend
+```plain
 $ cd ..
 $ cd frontend
 $ npm install
 $ ng serve -o
+```
