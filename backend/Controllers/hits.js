@@ -35,7 +35,8 @@ exports.insertHits = function(req, res, next) {
 
 exports.listHits =  function(req, res, next) {
   var condition = {"is_delete" : "false"}
-  Hits.find(condition, function (err, doc) {
+  var sort = {sort:{created_at_i:-1}}
+  Hits.find(condition, null, sort, function (err, doc) {
     res.send(doc);
   });
 }

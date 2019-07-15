@@ -1,25 +1,30 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<h2>Here are some links to help you start: </h2>
+<h2>Prueba Técnica Ingerencia: </h2>
 
-<table mat-table [dataSource]="myDataArray" class="mat-elevation-z8">
+<table mat-table [dataSource]="myDataArray" matSort class="mat-elevation-z8">
   <!-- Position Column -->
   <ng-container matColumnDef="_id">
     <th mat-header-cell *matHeaderCellDef> _id </th>
     <td mat-cell *matCellDef="let element"> {{element._id}} </td>
   </ng-container>
   <!-- Position Column -->
+  <ng-container matColumnDef="story_title">
+    <th mat-header-cell *matHeaderCellDef> Titulo </th>
+    <td mat-cell *matCellDef="let element"> {{element.story_title}} </td>
+  </ng-container>
+  <!-- Position Column -->
   <ng-container matColumnDef="author">
-    <th mat-header-cell *matHeaderCellDef> author </th>
+    <th mat-header-cell *matHeaderCellDef> autor </th>
     <td mat-cell *matCellDef="let element"> {{element.author}} </td>
   </ng-container>
   <!-- Position Column -->
   <ng-container matColumnDef="created_at">
-    <th mat-header-cell *matHeaderCellDef> created_at </th>
-    <td mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> creado </th>
+    <td mat-cell *matCellDef="let element"> {{element.created_at | dateFormat: 'MMMM Do YYYY, h:mm:ss a'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="action">
-    <th mat-header-cell *matHeaderCellDef> Delete </th>
+    <th mat-header-cell *matHeaderCellDef> Borrar </th>
     <td mat-cell *matCellDef="let element;">
         <button mat-raised-button  color="warn" focusable="false" (click)="deleteHit(element._id)">
             <i class="fa fa-times mat-icon"></i> Borrar
