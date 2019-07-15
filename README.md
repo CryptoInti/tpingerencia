@@ -1,8 +1,9 @@
 # tp ingenieria
 
-Pasos para iniciar backend y frontend.
-
+## Pasos para iniciar backend y frontend.
+```plain
 $ git clone https://github.com/CryptoInti/tpingerencia
+```
 
 ## Iniciar Backend
 ```plain
