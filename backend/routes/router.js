@@ -10,10 +10,13 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/getfromapi', function (req, res, next) {
-  var j = schedule.scheduleJob('1 * * * * *', function() {
+  var dateTime = new Date();
+  console.log("----->"+dateTime);
+  var j = schedule.scheduleJob('0 1 * * *', function(activaDate) {
+    console.log("activa"+activaDate+" new Date():"+new Date());
     axios.get('http://hn.algolia.com/api/v1/search_by_date?query=nodejs')
     .then(response => {
-      let dateTime = new Date();
+      //let dateTime = new Date();
       console.log("llama Api Hits a las :"+dateTime);
       //console.log("data: "+JSON.stringify(response.data,null,4));
 

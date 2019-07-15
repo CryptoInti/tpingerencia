@@ -15,6 +15,9 @@ var HitsSchema = new mongoose.Schema({
   author: {
     type: String
   },
+  comment_text: {
+    type: String
+  },
   story_id: {
     type: Number
   },

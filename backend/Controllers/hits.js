@@ -12,20 +12,22 @@ exports.insertHits = function(req, res, next) {
     //console.log(item);
     //Se busca si existe el registro previamente.
     Hits.find({created_at_i:item.created_at_i}, function(err, doc) {
-      if(doc.length == 0){
-        //Volvermos a guardar el registro solo si no existe el created_at_i previamente
-        item["is_delete"] = false;
-        Hits.create(item, function (error, hits) {
-          if (error) {
-            return next(error);
-          } else {
-            inserted++;
-            console.log("OK--save-->"+hits.created_at_i+", count("+inserted+")");
-          }
-        });
-      } else {
-        duplicated++;
-        console.log("NO--duplicated-->"+item.created_at_i+", count("+duplicated+")");
+      if(doc){
+        if(doc.length == 0){
+          //Volvermos a guardar el registro solo si no existe el created_at_i previamente
+          item["is_delete"] = false;
+          Hits.create(item, function (error, hits) {
+            if (error) {
+              return next(error);
+            } else {
+              inserted++;
+              console.log("OK--save-->"+hits.created_at_i+", count("+inserted+")");
+            }
+          });
+        } else {
+          duplicated++;
+          console.log("NO--duplicated-->"+item.created_at_i+", count("+duplicated+")");
+        }
       }
     })
 
