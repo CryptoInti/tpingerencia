@@ -18,6 +18,12 @@ var HitsSchema = new mongoose.Schema({
   story_id: {
     type: Number
   },
+  story_title: {
+    type: String
+  },
+  story_url: {
+    type: String
+  },
   parent_id: {
     type: Number
   },
