@@ -21,12 +21,12 @@ exports.insertHits = function(req, res, next) {
               return next(error);
             } else {
               inserted++;
-              console.log("OK--save-->"+hits.created_at_i+", count("+inserted+")");
+              console.log("OK -- Registro "+hits.created_at_i+" guardado -->, count("+inserted+")");
             }
           });
         } else {
           duplicated++;
-          console.log("NO--duplicated-->"+item.created_at_i+", count("+duplicated+")");
+          console.log("NO se guarda -- Registro "+item.created_at_i+" duplicado -->, count("+duplicated+")");
         }
       }
     })
@@ -43,22 +43,22 @@ exports.listHits =  function(req, res, next) {
   });
 }
 
-exports.deleteHit = function(req,res,next) {
-  Hits.delete(function (err, doc) {
-    console.log("deleting...");
-    res.delete(doc);
-  });
-}
+// exports.deleteHit = function(req,res,next) {
+//   Hits.delete(function (err, doc) {
+//     console.log("deleting...");
+//     res.delete(doc);
+//   });
+// }
 
 exports.updateHit = function(req,res,next) {
   var util = require('util');
-  //console.log("req: "+util.inspect(req));
+  console.log("req: "+util.inspect(req));
 
-  console.log("params: "+JSON.stringify(req.params,null,4));
-  //console.log("query: "+JSON.stringify(req.query,null,4));
+  //console.log("params: "+JSON.stringify(req.params,null,4));
   Hits.findByIdAndUpdate(req.params.hitsId, {$set: {"is_delete" : "true"}}, {useFindAndModify: false},
     function (err, hits) {
       if (err) return next(err);
+      console.log("Registro "+req.params.hitsId+" marcado 'is_delete' = true");
       //res.send('Hit deleted.');
     });
 
